@@ -1,6 +1,6 @@
-# Welcome to Remix!
+# Will-do Remixed!
 
-- [Remix Docs](https://remix.run/docs)
+Continuing on the (bare minimum) development of a previous note taking style app, now with the power of [Remix Docs](https://remix.run/docs)
 
 ## Development
 
