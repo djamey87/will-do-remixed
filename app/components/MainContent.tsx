@@ -1,7 +1,5 @@
 export default function MainContent() {
   return (
-    <div className="" style={{ backgroundColor: "slategrey" }}>
-      <h1 className="">interactive content goes here</h1>
-    </div>
+    <div className="flex-1 p-10 text-2xl font-bold">content goes here</div>
   );
 }
