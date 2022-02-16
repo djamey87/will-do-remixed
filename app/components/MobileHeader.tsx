@@ -13,11 +13,10 @@ export default function MobileHeader({ onMenuPress }: Props) {
         onClick={onMenuPress}
       >
         <svg
-          className="h-5 w-5"
+          className="h-5 w-5 stroke-purple"
           xmlns="http://www.w3.org/2000/svg"
           fill="none"
           viewBox="0 0 24 24"
-          stroke="currentColor"
         >
           <path
             stroke-linecap="round"
