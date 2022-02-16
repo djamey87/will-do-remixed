@@ -1,26 +1,38 @@
-import { Form } from "remix";
+import { ActionFunction, Form, redirect } from "remix";
+
+export const action: ActionFunction = async ({ request }) => {
+  const formData = await request.formData();
+
+  console.log("incoming formData", formData);
+  // const project = await createProject(formData);
+  return redirect(`/`);
+  // return redirect(`/projects/${project.id}`);
+};
 
 export default function Index() {
   return (
     <Form className="w-full max-w-lg" method="post">
       <div className="w-full">
-        <label className="block tracking-wide text-gray-700 text-xs font-bold mb-2">
+        <label className="block tracking-wide text-purple text-xs font-bold">
           title:
+          <br />
           <input
+            type="text"
             name="title"
             id="note-title"
-            className="bg-gray-200 text-gray-700 border border-slate-400 rounded py-1 pr-1 pl-3 ml-2 mb-3 leading-tight focus:outline-none focus:bg-white"
-          ></input>
+            className="border border-purple rounded py-1 pr-1 pl-3 mb-3 mt-1 leading-tight focus:outline-none text-sm text-black"
+          />
         </label>
       </div>
 
       <div className="w-full">
-        <label className="block tracking-wide text-gray-700 text-xs font-bold mb-2">
+        <label className="block tracking-wide text-purple text-xs font-bold mb-2">
           content:
+          <br />
           <textarea
             name="content"
             id="note-content"
-            className="bg-gray-200 text-gray-700 border border-slate-400 rounded py-1 pr-1 pl-3 ml-2 mb-3 leading-tight focus:outline-none focus:bg-white"
+            className="border border-purple rounded py-1 pr-1 pl-3 mb-3 mt-1 focus:outline-none text-sm text-black"
           ></textarea>
         </label>
       </div>
