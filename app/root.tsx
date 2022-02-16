@@ -8,6 +8,9 @@ import {
 } from "remix";
 import type { MetaFunction } from "remix";
 import styles from "./tailwind.css";
+import { useState } from "react";
+import MobileHeader from "./components/MobileHeader";
+import SideBar from "./components/SideBar";
 
 export function links() {
   return [{ rel: "stylesheet", href: styles }];
@@ -18,6 +21,12 @@ export const meta: MetaFunction = () => {
 };
 
 export default function App() {
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+
+  const toggleMenu = () => {
+    setIsMobileMenuOpen(!isMobileMenuOpen);
+  };
+
   return (
     <html lang="en">
       <head className="">
@@ -27,7 +36,15 @@ export default function App() {
         <Links />
       </head>
       <body>
-        <Outlet />
+        {/* credit to https://codepen.io/chris__sev/pen/RwKWXpJ for sidebar layout */}
+        <div className="relative min-h-screen md:flex">
+          <MobileHeader onMenuPress={toggleMenu} />
+          <SideBar isMobileMenuOpen={isMobileMenuOpen} />
+          <div className="flex-1 p-10 text-2xl font-bold">
+            <Outlet />
+          </div>
+        </div>
+
         <ScrollRestoration />
         <Scripts />
         {process.env.NODE_ENV === "development" && <LiveReload />}

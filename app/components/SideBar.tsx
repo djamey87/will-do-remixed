@@ -16,14 +16,14 @@ export default function SideBar({ isMobileMenuOpen }: Props) {
         will-do
       </a>
 
-      {/* <nav>
-          <a
-            href="#"
-            className="block py-2.5 px-4 rounded transition duration-200 hover:bg-blue-700 hover:text-white"
-          >
-            Home
-          </a>
-        </nav> */}
+      <nav>
+        <a
+          href="create"
+          className="block py-2.5 px-4 rounded transition duration-200 text-white hover:bg-white hover:text-purple"
+        >
+          Create
+        </a>
+      </nav>
     </div>
   );
 }
