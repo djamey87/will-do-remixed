@@ -1,15 +1,44 @@
-import { ActionFunction, Form, redirect } from "remix";
+import {
+  ActionFunction,
+  Form,
+  redirect,
+  useActionData,
+  useTransition,
+} from "remix";
+import { db } from "~/utils/db.server";
+
+type ActionData = {
+  formError?: string;
+  fieldErrors?: {
+    title: string | undefined;
+    content: string | undefined;
+  };
+  fields?: {
+    title: string;
+    content: string;
+  };
+};
 
 export const action: ActionFunction = async ({ request }) => {
   const formData = await request.formData();
+  const title = formData.get("title");
+  const content = formData.get("content");
 
-  console.log("incoming formData", formData);
-  // const project = await createProject(formData);
+  if (typeof title !== "string" || typeof content !== "string") {
+    return { formError: `Form not submitted correctly.` };
+  }
+
+  const note = await db.note.create({
+    data: { title, content },
+  });
+
   return redirect(`/`);
-  // return redirect(`/projects/${project.id}`);
 };
 
 export default function Index() {
+  const transition = useTransition();
+  const actionData = useActionData<ActionData | undefined>();
+
   return (
     <Form className="w-full max-w-lg" method="post">
       <div className="w-full">
@@ -21,6 +50,7 @@ export default function Index() {
             name="title"
             id="note-title"
             className="border border-purple rounded py-1 pr-1 pl-3 mb-3 mt-1 leading-tight focus:outline-none text-sm text-black"
+            required
           />
         </label>
       </div>
@@ -33,7 +63,8 @@ export default function Index() {
             name="content"
             id="note-content"
             className="border border-purple rounded py-1 pr-1 pl-3 mb-3 mt-1 focus:outline-none text-sm text-black"
-          ></textarea>
+            required
+          />
         </label>
       </div>
 
