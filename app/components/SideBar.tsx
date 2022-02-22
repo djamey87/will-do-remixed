@@ -10,7 +10,7 @@ export default function SideBar({ isMobileMenuOpen = false }: Props) {
       }`}
     >
       <a
-        href="#"
+        href="/"
         className="text-white flex items-center space-x-2 px-4 font-logo text-2xl font-extrabold"
       >
         will-do
