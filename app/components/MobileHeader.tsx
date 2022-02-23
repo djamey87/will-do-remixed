@@ -3,7 +3,7 @@ interface Props {
 }
 export default function MobileHeader({ onMenuPress }: Props) {
   return (
-    <div className="bg-gray-800 text-gray-100 flex justify-between md:hidden">
+    <div className="bg-white text-gray-100 flex justify-between md:hidden fixed w-full">
       <a href="/" className="block p-4 text-purple font-bold font-logo">
         will-do
       </a>
