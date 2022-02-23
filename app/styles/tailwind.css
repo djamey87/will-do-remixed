@@ -2,9 +2,12 @@
 @tailwind components;
 @tailwind utilities;
 
-@layer components {
-  .custom-class {
-    @apply ...;
+@layer base {
+  h1 {
+    @apply text-2xl;
+  }
+  h2 {
+    @apply text-xl;
   }
 }
 

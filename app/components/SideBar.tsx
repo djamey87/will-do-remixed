@@ -5,7 +5,7 @@ export interface Props {
 export default function SideBar({ isMobileMenuOpen = false }: Props) {
   return (
     <div
-      className={`sidebar bg-purple w-64 space-y-6 py-7 px-2 absolute inset-y-0 left-0 transform md:relative md:translate-x-0 transition duration-200 ease-in-out ${
+      className={`sidebar bg-purple w-64 space-y-6 py-7 px-2 absolute inset-y-0 left-0 transform md:relative md:translate-x-0 transition duration-200 ease-in-out shadow-xl ${
         !isMobileMenuOpen ? "-translate-x-full" : ""
       }`}
     >
