@@ -14,7 +14,7 @@ export default function Index() {
   const { notes } = useLoaderData<LoaderData>();
 
   if (!notes || notes.length === 0) {
-    return <h1></h1>;
+    return <h1>Where dey at?</h1>;
   }
 
   return (
