@@ -37,7 +37,6 @@ export default function MobileHeader({ onMenuPress, user }: Props) {
       <button
         className="p-4 focus:outline-none focus:bg-gray-700 invisible"
         onClick={onMenuPress}
-        // style={{ visibility: "hidden" }}
       >
         <svg
           className="h-5 w-5 stroke-purple"

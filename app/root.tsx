@@ -55,7 +55,11 @@ export default function App() {
         {/* credit to https://codepen.io/chris__sev/pen/RwKWXpJ for sidebar layout */}
         <div className="relative min-h-screen md:flex">
           <MobileHeader user={data.user} onMenuPress={toggleMenu} />
-          <SideBar user={data.user} isMobileMenuOpen={isMobileMenuOpen} />
+          <SideBar
+            user={data.user}
+            isMobileMenuOpen={isMobileMenuOpen}
+            onMenuPress={toggleMenu}
+          />
           <div className="flex-1 p-10">
             <Outlet />
           </div>
