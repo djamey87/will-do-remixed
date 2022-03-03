@@ -6,6 +6,7 @@ import {
   useTransition,
 } from "remix";
 import { db } from "~/utils/db.server";
+import { requireUserId } from "~/utils/session.server";
 
 type ActionData = {
   formError?: string;
@@ -20,6 +21,7 @@ type ActionData = {
 };
 
 export const action: ActionFunction = async ({ request }) => {
+  const userId = await requireUserId(request);
   const formData = await request.formData();
   const title = formData.get("title");
   const content = formData.get("content");
@@ -29,10 +31,10 @@ export const action: ActionFunction = async ({ request }) => {
   }
 
   const note = await db.note.create({
-    data: { title, content },
+    data: { title, content, authorId: userId },
   });
 
-  return redirect(`/`);
+  return redirect(`/notes`);
 };
 
 export default function Index() {

@@ -14,3 +14,7 @@
 .font-logo {
   font-family: "Pacifico";
 }
+
+.sidebar {
+  z-index: 1000;
+}
