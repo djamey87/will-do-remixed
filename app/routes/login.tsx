@@ -62,12 +62,9 @@ export const action: ActionFunction = async ({ request }) => {
   if (Object.values(fieldErrors).some(Boolean))
     return badRequest({ fieldErrors, fields });
 
-  console.log("loginType", loginType);
-
   switch (loginType) {
     case "login": {
       const user = await login({ username, password });
-      console.log({ user });
       if (!user) {
         return badRequest({
           fields,
@@ -113,39 +110,80 @@ export default function Login() {
   return (
     <section className="bg-white py-20 lg:py-[120px] relative z-10">
       <div className="container">
-        <div className="flex flex-wrap lg:justify-between -mx-4">
-          <div className="w-full lg:w-3/4 px-4">
-            <div className="bg-white relative rounded-lg p-8 sm:p-12 md:shadow-xl">
-              <h1>Login</h1>
-              <form method="post">
-                <input
-                  type="hidden"
-                  name="redirectTo"
-                  value={searchParams.get("redirectTo") ?? undefined}
-                />
-                <fieldset>
-                  <legend className="sr-only">Login or Register?</legend>
-                  <label>
-                    <input
-                      type="radio"
-                      name="loginType"
-                      value="login"
-                      defaultChecked
-                    />{" "}
+        <div className="flex lg:justify-between -mx-4 flex-auto">
+          <div className="w-full rounded-lg shadow-xl overflow-hidden">
+            <form method="post">
+              <input
+                type="hidden"
+                name="redirectTo"
+                value={searchParams.get("redirectTo") ?? undefined}
+              />
+              <fieldset>
+                <legend className="sr-only">Login or Register?</legend>
+                <div className="radio">
+                  <input
+                    id="login"
+                    type="radio"
+                    name="loginType"
+                    value="login"
+                    defaultChecked
+                  />
+                  <label htmlFor="login" className="transition">
                     Login
                   </label>
-                  <label>
-                    <input type="radio" name="loginType" value="register" />{" "}
+                </div>
+                <div className="radio">
+                  <input
+                    id="register"
+                    type="radio"
+                    name="loginType"
+                    value="register"
+                  />
+                  <label htmlFor="register" className="transition">
                     Register
                   </label>
-                </fieldset>
-                <div>
-                  <label htmlFor="username-input">Username</label>
-                  <input type="text" id="username-input" name="username" />
                 </div>
-                <div>
-                  <label htmlFor="password-input">Password</label>
-                  <input id="password-input" name="password" type="password" />
+              </fieldset>
+              <div className="bg-white relative p-8 sm:p-12">
+                <div className="mt-4">
+                  <label htmlFor="username-input" className="font-extralight">
+                    Username
+                  </label>
+                  <input
+                    type="text"
+                    id="username-input"
+                    name="username"
+                    className="w-full
+                    rounded
+                    py-2
+                    px-[14px]
+                    text-body-color text-base
+                    border border-grey
+                    resize-none
+                    outline-none
+                    focus-visible:shadow-none
+                    focus:border-primary"
+                  />
+                </div>
+                <div className="mt-2">
+                  <label htmlFor="password-input" className="font-extralight">
+                    Password
+                  </label>
+                  <input
+                    id="password-input"
+                    name="password"
+                    type="password"
+                    className="w-full
+                    rounded
+                    py-2
+                    px-[14px]
+                    text-body-color text-base
+                    border border-grey
+                    resize-none
+                    outline-none
+                    focus-visible:shadow-none
+                    focus:border-primary"
+                  />
                 </div>
 
                 <div id="form-error-message">
@@ -156,11 +194,20 @@ export default function Login() {
                   ) : null}
                 </div>
 
-                <button type="submit" className="button">
+                <button
+                  type="submit"
+                  className="w-full
+                    text-white
+                    bg-purple
+                    rounded
+                    p-3
+                    transition
+                    hover:bg-opacity-90 mt-6"
+                >
                   Submit
                 </button>
-              </form>
-            </div>
+              </div>
+            </form>
           </div>
         </div>
       </div>

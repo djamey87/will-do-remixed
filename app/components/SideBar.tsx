@@ -15,6 +15,14 @@ export default function SideBar({
   const renderAuthorisedLinks = () => (
     <nav>
       <Link
+        to="notes"
+        className="block py-2.5 px-4 rounded transition duration-200 text-white hover:bg-white hover:text-purple"
+        onClick={onMenuPress}
+      >
+        Notes
+      </Link>
+
+      <Link
         to="notes/new"
         className="block py-2.5 px-4 rounded transition duration-200 text-white hover:bg-white hover:text-purple"
         onClick={onMenuPress}
@@ -39,7 +47,7 @@ export default function SideBar({
         className="block py-2.5 px-4 rounded transition duration-200 text-white hover:bg-white hover:text-purple"
         onClick={onMenuPress}
       >
-        Login
+        Login / Register
       </Link>
     </nav>
   );

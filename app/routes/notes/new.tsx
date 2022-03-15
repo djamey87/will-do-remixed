@@ -46,7 +46,7 @@ export default function Index() {
       <div className="container">
         <div className="flex flex-wrap lg:justify-between -mx-4">
           <div className="w-full lg:w-3/4 px-4">
-            <div className="bg-white relative rounded-lg p-8 sm:p-12 md:shadow-xl">
+            <div className="bg-white relative rounded-lg p-8 sm:p-12 shadow-xl">
               <Form className="w-full" method="post">
                 <div className="mb-6">
                   <input
