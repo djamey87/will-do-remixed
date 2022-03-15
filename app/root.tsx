@@ -35,6 +35,34 @@ export let loader: LoaderFunction = async ({ request }) => {
   return data;
 };
 
+function Document({
+  children,
+  title = `Remix: So great, it's funny!`,
+}: {
+  children: React.ReactNode;
+  title?: string;
+}) {
+  return (
+    <html lang="en">
+      <head className="">
+        <meta charSet="utf-8" />
+        <meta name="viewport" content="width=device-width,initial-scale=1" />
+        <title>{title}</title>
+        <Meta />
+        <Links />
+      </head>
+      <body>
+        {/* credit to https://codepen.io/chris__sev/pen/RwKWXpJ for sidebar layout */}
+        <div className="relative min-h-screen md:flex">{children}</div>
+
+        <ScrollRestoration />
+        <Scripts />
+        {process.env.NODE_ENV === "development" && <LiveReload />}
+      </body>
+    </html>
+  );
+}
+
 export default function App() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const data = useLoaderData<LoaderData>();
@@ -44,31 +72,27 @@ export default function App() {
   };
 
   return (
-    <html lang="en">
-      <head className="">
-        <meta charSet="utf-8" />
-        <meta name="viewport" content="width=device-width,initial-scale=1" />
-        <Meta />
-        <Links />
-      </head>
-      <body>
-        {/* credit to https://codepen.io/chris__sev/pen/RwKWXpJ for sidebar layout */}
-        <div className="relative min-h-screen md:flex">
-          <MobileHeader user={data.user} onMenuPress={toggleMenu} />
-          <SideBar
-            user={data.user}
-            isMobileMenuOpen={isMobileMenuOpen}
-            onMenuPress={toggleMenu}
-          />
-          <div className="flex-1 p-10">
-            <Outlet />
-          </div>
-        </div>
+    <Document>
+      <MobileHeader user={data.user} onMenuPress={toggleMenu} />
+      <SideBar
+        user={data.user}
+        isMobileMenuOpen={isMobileMenuOpen}
+        onMenuPress={toggleMenu}
+      />
+      <div className="flex-1 p-10">
+        <Outlet />
+      </div>
+    </Document>
+  );
+}
 
-        <ScrollRestoration />
-        <Scripts />
-        {process.env.NODE_ENV === "development" && <LiveReload />}
-      </body>
-    </html>
+export function ErrorBoundary({ error }: { error: Error }) {
+  return (
+    <Document title="Uh-oh!">
+      <div>
+        <h1>App Error</h1>
+        <pre>{error.message}</pre>
+      </div>
+    </Document>
   );
 }

@@ -145,3 +145,7 @@ export default function Index() {
     </section>
   );
 }
+
+export function ErrorBoundary() {
+  return <div>Something unexpected went wrong, while creating your note.</div>;
+}

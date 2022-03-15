@@ -44,3 +44,7 @@ export default function Index() {
     </>
   );
 }
+
+export function ErrorBoundary() {
+  return <div>There's been an issue loading your notes</div>;
+}
