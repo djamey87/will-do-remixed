@@ -54,12 +54,15 @@ export default function SideBar({
 
   return (
     <div
-      className={`sidebar bg-purple w-64 space-y-6 absolute inset-y-0 left-0 transform md:relative md:translate-x-0 transition duration-200 ease-in-out shadow-xl ${
+      className={`sidebar bg-purple w-64 absolute inset-y-0 left-0 transform md:relative md:translate-x-0 transition duration-200 ease-in-out shadow-xl ${
         !isMobileMenuOpen ? "-translate-x-full" : ""
       }`}
     >
+      <p className="p-4 text-white font-bold font-logo hidden md:block mb-0 mt-0">
+        will-do
+      </p>
       <button
-        className="p-4 focus:outline-none focus:bg-gray-700"
+        className="p-4 focus:outline-none focus:bg-gray-700 md:hidden"
         onClick={onMenuPress}
       >
         <svg
