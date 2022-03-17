@@ -23,19 +23,33 @@ type ActionData = {
   };
 };
 
-export const action: ActionFunction = async ({ request }) => {
+export const action: ActionFunction = async ({ request, params }) => {
   const userId = await requireUserId(request);
   const formData = await request.formData();
   const title = formData.get("title");
   const content = formData.get("content");
+  const { noteId } = params;
 
   if (typeof title !== "string" || typeof content !== "string") {
     return { formError: `Form not submitted correctly.` };
   }
 
-  const note = await db.note.create({
+  if (!noteId) {
+    throw new Error("issue updating your note");
+  }
+
+  const updateBody = {
     data: { title, content, authorId: userId },
-  });
+  };
+
+  try {
+    await db.note.update({
+      where: { id: noteId },
+      data: { title, content, authorId: userId },
+    });
+  } catch (ex) {
+    throw new Error("issue updating your note " + ex);
+  }
 
   return redirect(`/notes`);
 };
